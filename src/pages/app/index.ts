@@ -1,7 +1,10 @@
 import Page from '../../core/templates/page';
+
 import MainPage from '../main';
 import SettingsPage from '../settings';
 import StatisticsPage from '../statistics';
+
+import Header from '../../core/components/header';
 
 export const enum PageIds {
   MainPage = 'main-page',
@@ -11,10 +14,17 @@ export const enum PageIds {
 
 class App {
   private static container: HTMLElement = document.body;
+  private static defaultPageId: string = 'current-page';
   private initialPage: MainPage;
+  private header: Header;
 
   static renderNewPage(idPage: string) {
-    App.container.innerHTML = '';
+    const currentPageHTML = document.querySelector(
+      `#${App.defaultPageId}`
+    );
+    if (currentPageHTML) {
+      currentPageHTML.remove();
+    }
     let page: Page | null = null;
 
     if (idPage === PageIds.MainPage) {
@@ -27,6 +37,7 @@ class App {
 
     if (page) {
       const pageHTML = page.render();
+      pageHTML.id = App.defaultPageId;
       App.container.append(pageHTML);
     }
   }
@@ -40,9 +51,11 @@ class App {
 
   constructor() {
     this.initialPage = new MainPage('main-page');
+    this.header = new Header('header', 'header-container');
   }
 
   run() {
+    App.container.append(this.header.render());
     App.renderNewPage('main-page');
     this.enableRouteChange();
   }
