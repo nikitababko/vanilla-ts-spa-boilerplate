@@ -1,5 +1,9 @@
 {
   "name": "vanilla-ts-spa-boilerplate",
+  "author": {
+    "name": "Nikita Babko",
+    "email": "niki.babko@gmail.com"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +15,6 @@
     "url": "git+https://github.com/nikitababko/vanilla-ts-spa-boilerplate.git"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nikitababko/vanilla-ts-spa-boilerplate/issues"
